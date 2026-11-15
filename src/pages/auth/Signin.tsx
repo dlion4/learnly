@@ -283,6 +283,14 @@ export default function Signin() {
     setDirectoryOpen(false);
   };
 
+  const fillAdminDemo = () => {
+    const account = SIGNIN_PREVIEW_ACCOUNTS.find((item) => item.id === "acc-adm-01");
+    if (!account) return;
+    setMode("password");
+    applyPresetAccount(account);
+    passwordForm.setValue("password", "LearnlyPreview!2025", { shouldValidate: true, shouldDirty: true });
+  };
+
   // S2: Password submit
   const onPasswordSubmit = (values: PasswordSignInValues) => {
     setBusy(true);
@@ -475,6 +483,21 @@ export default function Signin() {
                       </button>
                     </div>
                   </div>
+                )}
+
+                {stage === "credentials" && (
+                  <aside className="signin-admin-demo" aria-label="Admin demo sign-in details">
+                    <div className="signin-admin-demo-head">
+                      <div><span className="signin-admin-demo-label">EXPLORE THE DEMO</span><strong>Admin dashboard access</strong></div>
+                      <button type="button" className="ly-btn ly-btn-outline ly-btn-sm" onClick={fillAdminDemo}>Use demo details</button>
+                    </div>
+                    <div className="signin-admin-demo-details">
+                      <span>Email <strong>grace.mwangi@learnly.co.ke</strong></span>
+                      <span>Password <strong>LearnlyPreview!2025</strong></span>
+                      <span>2FA code <strong>{TOTP_PREVIEW_CODE}</strong></span>
+                    </div>
+                    <p>Use the details above, then enter the demo 2FA code to open the Admin Command Center. This is a preview, not real authentication; passwords are not verified.</p>
+                  </aside>
                 )}
 
                 {/* S3 — PASSWORD vs OTP TOGGLE (shown during credentials & OTP step) */}
@@ -1045,7 +1068,7 @@ export default function Signin() {
                       </div>
                       <p className="mt-2 mb-0 text-sm" style={{ color: "var(--text-secondary)" }}>
                         {session.role === "admin"
-                          ? `Admin sessions route to AD-1 with RBAC scope enforced (${session.dataScope}). ${session.permissionSummary}.`
+                          ? `Admin preview routes to AD-1. Displayed scope: ${session.dataScope}. Permissions are illustrative, not enforced.`
                           : `Student sessions route to S-1 showing profile completeness, active financial assistance requests, and recent payouts.`}
                       </p>
                     </div>
@@ -1085,7 +1108,7 @@ export default function Signin() {
                     <p className="ly-hint m-0">
                       {session.role === "student"
                         ? "Your Student Overview is ready. Only non-sensitive session details are kept on this device — never your password or OTP."
-                        : "The Admin Command Center (AD-1) is the next workspace to ship. Only non-sensitive session details are kept on this device — never your password or OTP."}
+                        : "Your Admin Command Center preview is ready. Only non-sensitive session details are kept on this device — never your password or OTP."}
                     </p>
 
                     <div className="flex flex-wrap gap-2">
@@ -1099,11 +1122,11 @@ export default function Signin() {
                         </a>
                       ) : (
                         <a
-                          href="/"
+                          href="/admin"
                           className="ly-btn ly-btn-primary"
-                          onClick={(e) => { e.preventDefault(); navigate("/"); }}
+                          onClick={(e) => { e.preventDefault(); navigate("/admin"); }}
                         >
-                          Explore Learnly →
+                          Open Admin Command Center →
                         </a>
                       )}
                       <a

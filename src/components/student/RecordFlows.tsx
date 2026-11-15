@@ -387,7 +387,7 @@ export function DataExportDialog() {
       </>
     }>
       <div className="grid gap-3" style={{ fontSize: "var(--fs-sm)", color: "var(--text-secondary)" }}>
-        <p className="m-0">You have the right to a copy of everything Learnly holds about you. The archive includes:</p>
+        <p className="m-0">This demo downloads a JSON preview of the records currently shown in the app. It is not a complete account archive and does not include document files:</p>
         <div className="ly-panel">
           <KV k="Profile & identifiers">masked</KV>
           <KV k="Requests">{s.requests.length} records</KV>
@@ -396,7 +396,7 @@ export function DataExportDialog() {
           <KV k="Document metadata">{s.documents.length} files</KV>
           <KV k="Consent log">5 purposes</KV>
         </div>
-        {saved ? <Alert tone="success" title="Archive downloaded">{saved} This download is recorded in your audit trail.</Alert> : <span className="ly-hint">In production the full ZIP (including document files) is prepared asynchronously in about 10 minutes.</span>}
+        {saved ? <Alert tone="success" title="Archive downloaded">{saved} This preview is not recorded in an audit trail.</Alert> : <span className="ly-hint">In production the full ZIP (including document files) is prepared asynchronously in about 10 minutes.</span>}
       </div>
     </Dialog>
   );
