@@ -452,7 +452,7 @@ export function SettingsPanel() {
   const s = useStudent();
   const seed = s.overlays.settings;
   if (!seed) return null;
-  return <SettingsInner key={String(seed)} initial={seed === "privacy" ? "privacy" : "account"} />;
+  return <SettingsInner key={String(seed)} initial={seed === "privacy" ? "privacy" : seed === "alerts" ? "alerts" : "account"} />;
 }
 
 function SettingsInner({ initial }: { initial: SetTab }) {

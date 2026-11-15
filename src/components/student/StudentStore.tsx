@@ -133,6 +133,8 @@ interface Store {
   addDocument: (input: DocumentInput) => string;
   markRead: (id: string) => void;
   markAllRead: () => void;
+  deleteNotification: (id: string) => void;
+  clearReadNotifications: () => void;
   readThread: (id: string) => void;
   sendMessage: (threadId: string, body: string) => void;
   createThread: (subject: string, withName: string, withRole: string, body: string, relatedId?: string) => string;
@@ -153,7 +155,7 @@ interface Store {
 const Ctx = createContext<Store | null>(null);
 
 /** Overlays that live on their own route. Opening them navigates instead of stacking a drawer. */
-const ROUTED: Partial<Record<OverlayKey, string>> = { profile: "/student/profile" };
+const ROUTED: Partial<Record<OverlayKey, string>> = { profile: "/student/profile", financial: "/student/financial-assistance", academic: "/student/academic-records", settings: "/student/settings", help: "/student/help" };
 
 /** Append audit entries for each changed field, newest first. */
 const withAudit = (existing: AuditEntry[], changes: AuditChange[], actor: string, reason?: string): AuditEntry[] => {
@@ -201,11 +203,15 @@ export function StudentProvider({ children }: { children: ReactNode }) {
   const [notifications, setNotifications] = useState<StudentNotification[]>(STUDENT_NOTIFICATIONS);
   const [threads, setThreads] = useState<MessageThread[]>(MESSAGE_THREADS);
   const [reminders, setReminders] = useState<string[]>(["td-01", "td-07"]);
-  const [settings, setSettings] = useState<Settings>({
+  const [settings, setSettings] = useState<Settings>(() => {
+    const defaults: Settings = {
     language: "en",
     prefs: { "APPROVAL:sms": true, "APPROVAL:email": true, "PAYOUT:sms": true, "PAYOUT:email": true, "DOCUMENT:email": true, "MESSAGE:push": true, "TERM_REMINDER:email": true, "TERM_REMINDER:sms": false },
     consents: { sponsorship: true, special: true, school: true, comms: true, marketing: false },
+    };
+    try { const saved = JSON.parse(localStorage.getItem("learnly.settings.v1") || "null"); return saved && typeof saved === "object" ? { ...defaults, ...saved, prefs: { ...defaults.prefs, ...saved.prefs }, consents: { ...defaults.consents, ...saved.consents } } : defaults; } catch { return defaults; }
   });
+  useEffect(() => { try { localStorage.setItem("learnly.settings.v1", JSON.stringify(settings)); } catch { /* in-memory fallback */ } }, [settings]);
   const [overlays, setOverlays] = useState<Partial<Record<OverlayKey, string | true>>>({});
   const [flash, setFlash] = useState<Record<string, FlashKind>>({});
   const [confetti, setConfetti] = useState(false);
@@ -349,6 +355,8 @@ export function StudentProvider({ children }: { children: ReactNode }) {
 
   const markRead = useCallback((id: string) => setNotifications((list) => list.map((n) => (n.id === id ? { ...n, read: true } : n))), []);
   const markAllRead = useCallback(() => setNotifications((list) => list.map((n) => ({ ...n, read: true }))), []);
+  const deleteNotification = useCallback((id: string) => setNotifications(list => list.filter(n => n.id !== id)), []);
+  const clearReadNotifications = useCallback(() => setNotifications(list => list.filter(n => !n.read)), []);
   const readThread = useCallback((id: string) => setThreads((list) => list.map((t) => (t.id === id && t.unread ? { ...t, unread: 0 } : t))), []);
   const sendMessage = useCallback((threadId: string, body: string) => {
     setThreads((list) => list.map((t) => (t.id === threadId
@@ -510,7 +518,7 @@ export function StudentProvider({ children }: { children: ReactNode }) {
     unreadNotifications: notifications.filter((n) => !n.read).length,
     unreadMessages: threads.reduce((sum, th) => sum + th.unread, 0),
     t, open, close, openLink, capInfo, termBlocker, submitRequest, saveDraft, withdrawRequest, addProof,
-    addMethod, verifyMethod, removeMethod, setDefaultMethod, addDocument, markRead, markAllRead, readThread,
+    addMethod, verifyMethod, removeMethod, setDefaultMethod, addDocument, markRead, markAllRead, deleteNotification, clearReadNotifications, readThread,
     sendMessage, createThread, toggleReminder, updateSettings,
     profile, saveSection, upsertGuardian, removeGuardian, setGuardianFlag, setPhoto, addCorrection, withdrawCorrection, addTransfer, closeAll,
   };

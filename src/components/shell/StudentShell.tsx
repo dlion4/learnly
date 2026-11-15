@@ -24,14 +24,14 @@ import { navigate, usePathname } from "../../lib/navigation";
 export const STUDENT_NAV: { id: string; icon: string; route: string; ready: boolean; panel?: PanelKey }[] = [
   { id: "overview", icon: "home", route: "/student", ready: true },
   { id: "profile", icon: "user", route: "/student/profile", ready: true },
-  { id: "financial", icon: "wallet", route: "/student/financial-assistance", ready: false, panel: "financial" },
-  { id: "academic", icon: "book", route: "/student/academic-records", ready: false, panel: "academic" },
-  { id: "related", icon: "users", route: "/student/related-users", ready: false, panel: "related" },
-  { id: "account", icon: "card", route: "/student/account", ready: false, panel: "account" },
-  { id: "documents", icon: "file", route: "/student/documents", ready: false, panel: "documents" },
-  { id: "messages", icon: "chat", route: "/student/messages", ready: false, panel: "messages" },
-  { id: "notifications", icon: "bell", route: "/student/notifications", ready: false, panel: "notifications" },
-  { id: "settings", icon: "settings", route: "/student/settings", ready: false, panel: "settings" },
+  { id: "financial", icon: "wallet", route: "/student/financial-assistance", ready: true },
+  { id: "academic", icon: "book", route: "/student/academic-records", ready: true },
+  { id: "related", icon: "users", route: "/student/related-users", ready: true },
+  { id: "account", icon: "card", route: "/student/account", ready: true },
+  { id: "documents", icon: "file", route: "/student/documents", ready: true },
+  { id: "messages", icon: "chat", route: "/student/messages", ready: true },
+  { id: "notifications", icon: "bell", route: "/student/notifications", ready: true },
+  { id: "settings", icon: "settings", route: "/student/settings", ready: true },
 ];
 
 export function StudentShell({ children, pageClass }: { children: ReactNode; pageClass: string }) {
@@ -54,6 +54,13 @@ function ShellFrame({ children, pageClass }: { children: ReactNode; pageClass: s
     document.documentElement.setAttribute("data-bs-theme", dark ? "dark" : "light");
     localStorage.setItem("ly-theme", dark ? "dark" : "light");
   }, [dark]);
+  useEffect(() => {
+    const media = window.matchMedia("(prefers-color-scheme: dark)");
+    const syncSystem = () => { if (localStorage.getItem("learnly.appearance.v1") === "system") setDark(media.matches); };
+    syncSystem();
+    media.addEventListener("change", syncSystem);
+    return () => media.removeEventListener("change", syncSystem);
+  }, []);
   useEffect(() => {
     const observer = new MutationObserver(() => setDark(document.documentElement.getAttribute("data-bs-theme") === "dark"));
     observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-bs-theme"] });
@@ -111,7 +118,7 @@ function ShellFrame({ children, pageClass }: { children: ReactNode; pageClass: s
         </nav>
 
         <div className="student-nav mt-auto">
-          <button type="button" className="student-nav-item" onClick={() => { closeMenu(); s.open("help"); }}><Icon name="help" size={18} /><span>{s.t("help")}</span></button>
+          <a href="/student/help" className={`student-nav-item ${pathname === "/student/help" ? "is-active" : ""}`} onClick={(e) => { e.preventDefault(); closeMenu(); navigate("/student/help"); }}><Icon name="help" size={18} /><span>{s.t("help")}</span></a>
           <button type="button" className="student-nav-item" onClick={() => { closeMenu(); s.open("signOut"); }}><Icon name="logout" size={18} /><span>{s.t("signOut")}</span></button>
           <div className="ly-hint px-3 pt-2">Sponsor: {st.sponsor}</div>
         </div>
@@ -173,7 +180,7 @@ function ShellFrame({ children, pageClass }: { children: ReactNode; pageClass: s
               )}
             </Dropdown>
 
-            <button type="button" className="ly-icon-btn" aria-label={dark ? "Switch to light mode" : "Switch to dark mode"} onClick={() => setDark((d) => !d)}>
+            <button type="button" className="ly-icon-btn" aria-label={dark ? "Switch to light mode" : "Switch to dark mode"} onClick={() => setDark((d) => { localStorage.setItem("learnly.appearance.v1", d ? "light" : "dark"); return !d; })}>
               <Icon name={dark ? "sun" : "moon"} size={16} />
             </button>
 

@@ -172,3 +172,16 @@ test("S5 footer links, all-12 directory dialog, dark mode and 360px mobile layou
   await page.locator(".signin-footer-links").getByRole("link", { name: "Create account", exact: true }).click();
   await expect(page).toHaveURL("http://127.0.0.1:4173/auth/signup");
 });
+
+test("admin demo details prefill the form and open the command center", async ({ page }) => {
+  await page.getByRole("button", { name: "Use demo details" }).click();
+  await expect(page.locator("#signin-identifier")).toHaveValue("grace.mwangi@learnly.co.ke");
+  await expect(page.locator("#signin-password")).toHaveValue("LearnlyPreview!2025");
+  await page.getByRole("button", { name: "Sign in", exact: true }).click();
+  await expect(page.getByRole("region", { name: "Two-factor authentication challenge" })).toBeVisible();
+  await page.getByRole("button", { name: "Use preview TOTP 246810 →" }).click();
+  await page.getByRole("button", { name: "Verify 2FA & sign in →" }).click();
+  await page.getByRole("link", { name: "Open Admin Command Center →" }).click();
+  await expect(page).toHaveURL(/\/admin$/);
+  await expect(page.getByRole("heading", { name: /Good day, Grace/ })).toBeVisible();
+});
