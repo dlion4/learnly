@@ -1,0 +1,885 @@
+/* ============================================================
+   PAGE A-1 — SIGN UP (scoped under .page-auth-signup only)
+   ============================================================ */
+.page-auth-signup .signup-page-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  min-height: calc(100dvh - 142px);
+}
+
+/* ---------- S1: INDIGO BRAND PANEL ---------- */
+.page-auth-signup .signup-brand-panel {
+  position: relative;
+  overflow: hidden;
+  padding: var(--space-6) var(--space-7);
+  background: var(--brand-primary);
+  color: var(--text-on-brand);
+}
+.page-auth-signup .signup-brand-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255,255,255,0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.055) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at 50% 30%, #000, transparent 80%);
+  pointer-events: none;
+}
+.page-auth-signup .signup-brand-panel::after {
+  content: "";
+  position: absolute;
+  width: 440px;
+  height: 440px;
+  right: -200px;
+  top: 30%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(var(--brand-accent-rgb), 0.22), transparent 65%);
+  pointer-events: none;
+}
+.page-auth-signup .signup-brand-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 440px;
+  height: 100%;
+  min-height: 690px;
+  margin: 0 auto;
+}
+.page-auth-signup .signup-brand-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+.page-auth-signup .signup-brand-top > span {
+  font-size: var(--fs-label);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--text-on-brand);
+  opacity: 0.65;
+}
+.page-auth-signup .signup-brand-heading {
+  margin-top: 44px;
+}
+.page-auth-signup .signup-brand-heading h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(3.2rem, 5.2vw, 4.5rem);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  color: var(--text-on-brand);
+}
+.page-auth-signup .signup-brand-heading h1 span {
+  color: var(--brand-accent);
+  font-style: italic;
+}
+.page-auth-signup .signup-brand-heading > p {
+  margin: 16px 0 0;
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: var(--text-on-brand);
+}
+.page-auth-signup .signup-brand-heading .signup-brand-description {
+  margin-top: 12px;
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: 1.7;
+  color: var(--text-on-brand);
+  opacity: 0.72;
+}
+.page-auth-signup .signup-pathway {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+  margin: 30px 0 24px;
+}
+.page-auth-signup .signup-pathway-card {
+  position: relative;
+  padding: 14px;
+  border: 1px solid var(--border-subtle);
+  border-top: 4px solid var(--ribbon);
+  border-radius: var(--radius-md);
+  background: var(--surface-1);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-3);
+}
+.page-auth-signup .signup-pathway-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--ribbon) 20%, var(--surface-1));
+  color: var(--text-on-edu);
+}
+.page-auth-signup .signup-pathway-badge {
+  padding: 3px 7px;
+  border-radius: var(--radius-pill);
+  background: var(--ribbon);
+  color: var(--text-on-edu);
+  font-size: var(--fs-label);
+  font-weight: 800;
+}
+.page-auth-signup .signup-pathway-title {
+  margin-top: 8px;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+.page-auth-signup .signup-pathway-meta {
+  margin-top: 3px;
+  font-size: 10px;
+  color: var(--text-tertiary);
+}
+.page-auth-signup .signup-brand-stats {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.2);
+}
+.page-auth-signup .signup-brand-stat-number {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--text-on-brand);
+}
+.page-auth-signup .signup-brand-stats > div > div:last-child {
+  margin-top: 3px;
+  font-size: var(--fs-sm);
+  color: var(--text-on-brand);
+  opacity: 0.7;
+}
+.page-auth-signup .signup-brand-ke {
+  margin-left: auto;
+  font-size: 28px;
+}
+.page-auth-signup .signup-brand-quote {
+  margin-top: auto;
+  padding-top: 30px;
+}
+.page-auth-signup .signup-brand-quote blockquote {
+  margin: 0;
+  font: italic 500 1rem/1.65 var(--font-serif);
+  color: var(--text-on-brand);
+  opacity: 0.9;
+}
+.page-auth-signup .signup-brand-quote cite {
+  display: block;
+  margin-top: 10px;
+  font: normal 11px/1.5 var(--font-sans);
+  color: var(--text-on-brand);
+  opacity: 0.6;
+}
+.page-auth-signup .signup-brand-footer {
+  margin-top: 24px;
+  font-size: var(--fs-label);
+  color: var(--text-on-brand);
+  opacity: 0.55;
+}
+
+/* ---------- S2 + S3: FORM SIDE ---------- */
+.page-auth-signup .signup-form-side {
+  padding: 34px var(--space-6);
+  background: var(--surface-0);
+}
+.page-auth-signup .signup-form-container,
+.page-auth-signup .signup-verify-card,
+.page-auth-signup .signup-success-card {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+.page-auth-signup .signup-breadcrumb {
+  color: var(--text-tertiary);
+  font-size: var(--fs-sm);
+}
+.page-auth-signup .signup-breadcrumb a {
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+.page-auth-signup .signup-breadcrumb a:hover {
+  color: var(--brand-ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.page-auth-signup .signup-form-heading {
+  margin: 8px 0;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+.page-auth-signup .signup-form-sub {
+  font-size: var(--fs-body);
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
+.page-auth-signup .signup-role-fieldset {
+  min-width: 0;
+  margin: 24px 0 18px;
+  padding: 0;
+  border: 0;
+}
+.page-auth-signup .signup-role-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+  margin-top: 8px;
+}
+.page-auth-signup .signup-role-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  gap: 6px;
+  padding: 12px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  background: var(--surface-1);
+  cursor: pointer;
+  transition: border-color var(--dur-fast), background var(--dur-fast), box-shadow var(--dur-fast);
+}
+.page-auth-signup .signup-role-card:hover {
+  border-color: var(--brand-ink);
+}
+.page-auth-signup .signup-role-card.is-selected {
+  border-color: var(--brand-ink);
+  background: var(--brand-primary-soft);
+  box-shadow: 0 0 0 1px var(--brand-ink);
+}
+.page-auth-signup .signup-role-card:focus-within {
+  outline: 3px solid rgba(var(--brand-accent-rgb), 0.55);
+  outline-offset: 2px;
+}
+.page-auth-signup .signup-role-card input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+.page-auth-signup .signup-role-icon {
+  grid-column: 1;
+  grid-row: 1;
+  color: var(--brand-ink);
+}
+.page-auth-signup .signup-role-title {
+  grid-column: 2;
+  grid-row: 1;
+  padding-right: 16px;
+  font-size: var(--fs-body);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.page-auth-signup .signup-role-description {
+  grid-column: 1 / -1;
+  font-size: 11px;
+  line-height: 1.45;
+  color: var(--text-secondary);
+}
+.page-auth-signup .signup-role-check {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 17px;
+  height: 17px;
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-on-brand);
+}
+.page-auth-signup .is-selected .signup-role-check {
+  background: var(--brand-ink);
+  border-color: var(--brand-ink);
+}
+.page-auth-signup .signup-form-grid {
+  display: grid;
+  gap: 13px;
+}
+.page-auth-signup .optional-label {
+  font-size: var(--fs-label);
+  font-weight: 400;
+  color: var(--text-tertiary);
+}
+.page-auth-signup .signup-password-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+.page-auth-signup .signup-consent-grid {
+  display: grid;
+  gap: 10px;
+  margin-top: 18px;
+}
+.page-auth-signup .consent-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+}
+.page-auth-signup .consent-row input {
+  width: 16px;
+  height: 16px;
+  margin: 2px 0 0;
+  flex-shrink: 0;
+  accent-color: var(--brand-primary);
+  cursor: pointer;
+}
+.page-auth-signup .consent-row span {
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+.page-auth-signup .consent-row button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--brand-ink);
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+.page-auth-signup .signup-submit-btn {
+  width: 100%;
+  margin-top: 20px;
+  min-height: 46px;
+  font-size: 1rem;
+}
+.page-auth-signup .signup-account-links {
+  margin-top: 17px;
+  text-align: center;
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+}
+.page-auth-signup .signup-account-links button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--brand-ink);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.page-auth-signup .signup-account-links button:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.page-auth-signup .signup-secure-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 18px;
+  font-size: 10px;
+  line-height: 1.5;
+  color: var(--text-tertiary);
+  text-align: center;
+}
+.page-auth-signup .signup-secure-note svg {
+  flex-shrink: 0;
+}
+.page-auth-signup .signup-preview-note {
+  margin: 8px 0 0;
+  font-size: 10px;
+  line-height: 1.6;
+  color: var(--text-tertiary);
+  text-align: center;
+}
+.page-auth-signup .signup-error-summary {
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--brand-danger) 10%, var(--surface-1));
+  border: 1px solid color-mix(in srgb, var(--brand-danger) 30%, transparent);
+  color: var(--brand-danger);
+  font-size: var(--fs-sm);
+}
+.page-auth-signup .signup-existing-preview {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 12px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--brand-primary-soft);
+  color: var(--text-secondary);
+  font-size: var(--fs-sm);
+}
+.page-auth-signup .signup-existing-preview button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--brand-ink);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.page-auth-signup .signup-admin-token-field {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid color-mix(in srgb, var(--brand-accent) 40%, transparent);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--brand-accent) 8%, var(--surface-1));
+}
+.page-auth-signup .signup-admin-token-field > .ly-field {
+  flex: 1;
+  min-width: min(100%, 240px);
+}
+.page-auth-signup .signup-token-input-shell {
+  position: relative;
+}
+.page-auth-signup .signup-token-input-shell input {
+  padding-right: 60px;
+  font-size: var(--fs-sm);
+}
+.page-auth-signup .signup-token-input-shell button {
+  position: absolute;
+  top: 7px;
+  right: 8px;
+  padding: 4px 6px;
+  border: 0;
+  background: none;
+  color: var(--brand-ink);
+  font-size: var(--fs-label);
+  font-weight: 600;
+  cursor: pointer;
+}
+.page-auth-signup .signup-admin-note {
+  flex-basis: 100%;
+  font-size: var(--fs-sm);
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+
+/* ---------- Shared password primitive ---------- */
+.page-auth-signup .password-input-shell,
+.auth-shell .password-input-shell {
+  position: relative;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  background: var(--surface-1);
+}
+.page-auth-signup .password-input-shell:focus-within,
+.auth-shell .password-input-shell:focus-within {
+  border-color: var(--brand-ink);
+  box-shadow: 0 0 0 4px rgba(var(--brand-primary-rgb), 0.12);
+}
+.page-auth-signup .password-input-shell.is-invalid,
+.auth-shell .password-input-shell.is-invalid {
+  border-color: var(--brand-danger);
+}
+.page-auth-signup .password-input-shell .ly-input,
+.auth-shell .password-input-shell .ly-input {
+  border: 0;
+  padding-right: 42px;
+  font-size: var(--fs-sm);
+  background: transparent;
+  box-shadow: none;
+}
+.page-auth-signup .password-toggle,
+.auth-shell .password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: none;
+  color: var(--text-tertiary);
+  cursor: pointer;
+}
+.page-auth-signup .password-toggle:hover,
+.auth-shell .password-toggle:hover {
+  color: var(--brand-ink);
+  background: var(--surface-2);
+}
+.page-auth-signup .password-strength,
+.auth-shell .password-strength {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--fs-label);
+  color: var(--text-tertiary);
+}
+.page-auth-signup .password-strength-bars,
+.auth-shell .password-strength-bars {
+  display: flex;
+  gap: 3px;
+  flex: 1;
+}
+.page-auth-signup .password-strength-bars span,
+.auth-shell .password-strength-bars span {
+  height: 3px;
+  flex: 1;
+  border-radius: var(--radius-pill);
+}
+
+/* ---------- S4: OTP PREVIEW ---------- */
+.page-auth-signup .signup-verify-card {
+  padding: 20px 0;
+}
+.page-auth-signup .signup-verify-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: var(--brand-primary-soft);
+  color: var(--brand-ink);
+  border: 1px solid var(--border-strong);
+}
+.page-auth-signup .signup-otp-preview {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  background: var(--brand-primary-soft);
+  color: var(--text-secondary);
+}
+.page-auth-signup .signup-otp-preview > svg {
+  color: var(--brand-ink);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.page-auth-signup .signup-otp-preview p {
+  margin: 5px 0 8px;
+  font-size: var(--fs-sm);
+  line-height: 1.65;
+}
+.page-auth-signup .signup-otp-preview button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--brand-ink);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  cursor: pointer;
+}
+.page-auth-signup .signup-otp-preview button:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.page-auth-signup .otp-input-shell {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 10px;
+  margin: 10px 0;
+}
+.page-auth-signup .ly-otp-input {
+  width: 100%;
+  height: 60px;
+  padding: 0;
+  border: 2px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  background: var(--surface-1);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+  caret-color: var(--brand-ink);
+  transition: border-color var(--dur-fast), box-shadow var(--dur-fast);
+}
+.page-auth-signup .ly-otp-input:focus {
+  outline: none;
+  border-color: var(--brand-ink);
+  box-shadow: 0 0 0 4px rgba(var(--brand-primary-rgb), 0.12);
+}
+.page-auth-signup .ly-otp-input[aria-invalid="true"] {
+  border-color: var(--brand-danger);
+}
+.page-auth-signup .ly-otp-input:disabled {
+  opacity: 0.6;
+}
+.page-auth-signup .signup-otp-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: var(--fs-label);
+}
+.page-auth-signup .signup-verify-actions {
+  display: grid;
+  gap: 6px;
+  margin-top: 24px;
+}
+.page-auth-signup .signup-resend-row {
+  margin-top: 20px;
+  text-align: center;
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+}
+.page-auth-signup .signup-resend-row button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--brand-ink);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.page-auth-signup .signup-resend-row button:hover:not(:disabled) {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.page-auth-signup .signup-resend-row button:disabled {
+  color: var(--text-tertiary);
+  cursor: not-allowed;
+}
+
+/* ---------- SUCCESS ---------- */
+.page-auth-signup .signup-success-card {
+  padding: 20px 0;
+}
+.page-auth-signup .signup-success-card h2:focus {
+  outline: none;
+}
+.page-auth-signup .signup-success-account {
+  padding: 20px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  background: var(--surface-1);
+  box-shadow: var(--shadow-2);
+}
+.page-auth-signup .signup-account-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 0;
+  border-bottom: 1px dashed var(--border-subtle);
+  font-size: var(--fs-sm);
+}
+.page-auth-signup .signup-account-row:last-child {
+  border-bottom: 0;
+}
+.page-auth-signup .signup-account-row > span {
+  color: var(--text-tertiary);
+}
+.page-auth-signup .signup-account-row strong {
+  color: var(--text-primary);
+  text-align: right;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+.page-auth-signup .signup-next-step {
+  padding: 14px 16px;
+  border-left: 3px solid var(--brand-accent);
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+}
+.page-auth-signup .signup-next-step p {
+  margin: 5px 0 0;
+  line-height: 1.65;
+}
+.page-auth-signup .signup-success-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 22px;
+}
+
+/* Compact desktop rhythm; mobile remains full-width and touch friendly. */
+.page-auth-signup .signup-form-side {
+  padding-top: 28px;
+  padding-bottom: 28px;
+}
+.page-auth-signup .signup-breadcrumb {
+  margin-bottom: 14px;
+}
+.page-auth-signup .signup-form-container > .ly-eyebrow {
+  margin-bottom: 4px;
+  font-size: 10px;
+  line-height: 1.2;
+}
+.page-auth-signup .signup-form-heading {
+  margin-top: 6px;
+  margin-bottom: 6px;
+  font-size: 1.875rem;
+}
+.page-auth-signup .signup-form-sub {
+  font-size: 14px;
+  line-height: 1.5;
+}
+.page-auth-signup .signup-role-fieldset {
+  margin-top: 18px;
+  margin-bottom: 14px;
+}
+.page-auth-signup .signup-role-grid {
+  margin-top: 6px;
+}
+.page-auth-signup .signup-form-grid {
+  gap: 10px;
+}
+.page-auth-signup .signup-form-grid > .ly-field {
+  gap: 4px;
+}
+.page-auth-signup .signup-form-grid .ly-label {
+  font-size: 12px;
+  line-height: 1.4;
+}
+.page-auth-signup .signup-form-grid .ly-input {
+  min-height: 40px;
+  padding: 9px 12px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+.page-auth-signup .signup-form-grid .ly-hint {
+  font-size: 10px;
+  line-height: 1.4;
+}
+.page-auth-signup .signup-consent-grid {
+  gap: 8px;
+  margin-top: 14px;
+}
+.page-auth-signup .signup-submit-btn {
+  min-height: 44px;
+  margin-top: 16px;
+}
+.page-auth-signup .signup-account-links {
+  margin-top: 12px;
+}
+.page-auth-signup .signup-secure-note {
+  margin-top: 12px;
+}
+.page-auth-signup .signup-preview-note {
+  margin-top: 6px;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 1023.98px) {
+  .page-auth-signup .signup-page-grid {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+  .page-auth-signup .signup-brand-panel {
+    padding: 24px var(--space-6);
+  }
+  .page-auth-signup .signup-brand-content {
+    min-height: 0;
+    max-width: none;
+  }
+  .page-auth-signup .signup-brand-heading {
+    margin-top: 24px;
+  }
+  .page-auth-signup .signup-brand-heading h1 {
+    font-size: 2.65rem;
+  }
+  .page-auth-signup .signup-brand-heading h1 br {
+    display: none;
+  }
+  .page-auth-signup .signup-brand-heading > p {
+    margin-top: 8px;
+    font-size: 1rem;
+  }
+  .page-auth-signup .signup-brand-heading .signup-brand-description,
+  .page-auth-signup .signup-pathway,
+  .page-auth-signup .signup-brand-quote,
+  .page-auth-signup .signup-brand-footer {
+    display: none;
+  }
+  .page-auth-signup .signup-brand-stats {
+    margin-top: 20px;
+    padding-top: 14px;
+    gap: 24px;
+  }
+  .page-auth-signup .signup-brand-stat-number {
+    font-size: 1.5rem;
+  }
+  .page-auth-signup .signup-brand-stats > div > div:last-child {
+    font-size: 11px;
+  }
+  .page-auth-signup .signup-form-side {
+    padding: 32px var(--space-6) 40px;
+  }
+}
+@media (max-width: 575.98px) {
+  .page-auth-signup .signup-brand-panel {
+    padding: 20px var(--space-4);
+  }
+  .page-auth-signup .signup-brand-top > span {
+    font-size: 8px;
+    letter-spacing: 0.06em;
+  }
+  .page-auth-signup .signup-brand-heading {
+    margin-top: 18px;
+  }
+  .page-auth-signup .signup-brand-heading h1 {
+    font-size: 2.2rem;
+  }
+  .page-auth-signup .signup-brand-heading .ly-eyebrow {
+    font-size: 9px;
+    margin-bottom: 8px;
+  }
+  .page-auth-signup .signup-brand-stats {
+    display: none;
+  }
+  .page-auth-signup .signup-form-side {
+    padding: 26px var(--space-4) 32px;
+  }
+  .page-auth-signup .signup-form-heading {
+    font-size: 1.8rem;
+  }
+  .page-auth-signup .signup-role-card {
+    padding: 12px;
+  }
+  .page-auth-signup .signup-role-title {
+    font-size: var(--fs-sm);
+  }
+  .page-auth-signup .signup-role-description {
+    font-size: 10px;
+  }
+  .page-auth-signup .signup-password-grid {
+    grid-template-columns: 1fr;
+  }
+  .page-auth-signup .otp-input-shell {
+    gap: 6px;
+  }
+  .page-auth-signup .ly-otp-input {
+    height: 48px;
+    font-size: 1.25rem;
+    border-radius: var(--radius-sm);
+  }
+  .page-auth-signup .signup-otp-meta {
+    flex-wrap: wrap;
+  }
+  .page-auth-signup .signup-success-account {
+    padding: 16px;
+  }
+  .page-auth-signup .signup-success-account h3 {
+    font-size: 1.05rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-auth-signup .ly-otp-input,
+  .page-auth-signup .signup-role-card {
+    transition: none;
+  }
+}

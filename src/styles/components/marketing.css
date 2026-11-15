@@ -1,0 +1,25 @@
+/* Shared marketing-shell styles (loaded at app root). */
+.marketing-footer {
+  border-top: 1px solid var(--border-subtle);
+  background: var(--surface-1);
+  color: var(--text-secondary);
+  font-size: var(--fs-sm);
+}
+.marketing-footer .footer-link {
+  background: none;
+  border: 0;
+  padding: 0;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font: inherit;
+  font-size: var(--fs-sm);
+  text-align: left;
+}
+.marketing-footer .footer-link:hover {
+  color: var(--brand-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.marketing-footer a.footer-link {
+  display: inline-block;
+}

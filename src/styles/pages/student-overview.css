@@ -1,0 +1,116 @@
+/* ============================================================
+   PAGE S-1 — STUDENT OVERVIEW (scoped under .page-student-overview)
+   ============================================================ */
+.page-student-overview .ov-hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-6);
+  overflow: hidden;
+  padding: var(--space-6);
+  background:
+    radial-gradient(520px 240px at 100% 0%, rgba(var(--brand-accent-rgb), 0.14), transparent 70%),
+    var(--surface-1);
+}
+.page-student-overview .ov-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 4px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-accent));
+}
+.page-student-overview .ov-hello {
+  margin: 6px 0 8px;
+  font-family: var(--font-serif);
+  font-size: clamp(1.9rem, 3.2vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--brand-ink);
+}
+.page-student-overview .ov-sub {
+  margin: 0 0 var(--space-3);
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+.page-student-overview .ov-edu-btn {
+  border: 0;
+  padding: 0.4rem 0.8rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast);
+}
+.page-student-overview .ov-edu-btn:hover { transform: translateY(-1px); box-shadow: var(--shadow-2); }
+.page-student-overview .ov-edu-btn:focus-visible { outline: 3px solid rgba(var(--brand-accent-rgb), 0.55); outline-offset: 2px; }
+.page-student-overview .ov-complete {
+  padding: var(--space-5);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+}
+
+.page-student-overview .ov-kpis {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.page-student-overview .ov-card { overflow: hidden; }
+.page-student-overview .ov-card-head { padding: var(--space-5) var(--space-5) 0; }
+.page-student-overview .ov-side { padding: var(--space-5); }
+.page-student-overview .ov-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+.page-student-overview .ov-caption {
+  margin: 4px 0 0;
+  color: var(--text-secondary);
+  font-size: var(--fs-sm);
+}
+.page-student-overview .ov-card .ly-tabs { border-bottom: 0; }
+.page-student-overview .ov-card .ly-table-wrap {
+  margin-top: var(--space-3);
+  border: 0;
+  border-top: 1px solid var(--border-subtle);
+  border-radius: 0;
+  box-shadow: none;
+}
+.page-student-overview .ov-card .ly-table td { vertical-align: middle; }
+
+.page-student-overview .ov-split {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  align-items: start;
+  gap: var(--space-5);
+}
+.page-student-overview .ov-flags {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+.page-student-overview .ov-flags .ly-alert { align-items: center; padding: var(--space-4); }
+
+@media (max-width: 1199.98px) {
+  .page-student-overview .ov-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 991.98px) {
+  .page-student-overview .ov-hero,
+  .page-student-overview .ov-split { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 767.98px) {
+  .page-student-overview .ov-flags { grid-template-columns: minmax(0, 1fr); }
+  .page-student-overview .ov-card .ly-table-wrap { padding: 0 var(--space-4) var(--space-4); border-top: 0; }
+  .page-student-overview .ov-flags .ly-alert { flex-wrap: wrap; }
+}
+@media (max-width: 575.98px) {
+  .page-student-overview .ov-kpis { grid-template-columns: minmax(0, 1fr); }
+  .page-student-overview .ov-hero { padding: var(--space-5) var(--space-4); gap: var(--space-4); }
+  .page-student-overview .ov-card-head { padding: var(--space-4) var(--space-4) 0; }
+  .page-student-overview .ov-side { padding: var(--space-4); }
+  .page-student-overview .ov-complete { padding: var(--space-4); }
+}
