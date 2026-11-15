@@ -62,7 +62,7 @@ export default function App() {
       <Signup />
     ) : pathname === "/auth/signin" ? (
       <Signin />
-    ) : ["/admin", "/admin/students", "/admin/approvals", "/admin/disbursements", "/admin/academic-verification", "/admin/schools"].includes(pathname) ? (
+    ) : ["/admin", "/admin/students", "/admin/approvals", "/admin/disbursements", "/admin/academic-verification", "/admin/schools", "/admin/users-permissions"].includes(pathname) ? (
       <AdminCommandCenter />
     ) : pathname === "/student/settings" ? (
       <SettingsPage />
